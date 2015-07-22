@@ -13,5 +13,6 @@ angular
     'ngAnimate',
     'ngAria',
     'ngTouch',
-    'ui.router'
+    'ui.router',
+    'satellizer'
   ]);
