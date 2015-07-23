@@ -8,10 +8,7 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('ProfileCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('ProfileCtrl', function ($scope, profile) {
+    $scope.user = profile.data;
+    console.log(profile.data);
   });

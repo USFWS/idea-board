@@ -19,7 +19,12 @@ angular.module('ideasApp')
       .state('profile', {
         url: '/profile',
         templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+        resolve: {
+          profile: function(User) {
+            return User.getOne(User.getId());
+          }
+        }
       });
 
     $authProvider.loginUrl = 'http://localhost:1337/auth/login';
@@ -30,6 +35,8 @@ angular.module('ideasApp')
       clientId: '84365983115-813872s0vvncdfdl40938hf13ahvm9h4.apps.googleusercontent.com'
     });
   })
+
+  .constant('API_URL', 'http://localhost:1337/')
 
   // Redirect user to login page if they're not logged in
   .run(function($rootScope, $location, $state, $auth) {
