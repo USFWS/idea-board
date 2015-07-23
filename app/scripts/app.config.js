@@ -6,8 +6,14 @@ angular.module('ideasApp')
 
     $stateProvider
       .state('login', {
-        url: "/login",
+        url: "/",
         templateUrl: "views/login.html"
+      })
+
+      .state('home', {
+        url: "/home",
+        templateUrl: "views/home.html",
+        controller: 'HomeCtrl'
       });
 
     $authProvider.loginUrl = 'http://localhost:1337/auth/login';
@@ -17,4 +23,18 @@ angular.module('ideasApp')
       redirectUri: 'http://localhost:9000/',
       clientId: '84365983115-813872s0vvncdfdl40938hf13ahvm9h4.apps.googleusercontent.com'
     });
-  });
+  })
+
+  .run(function($rootScope, $location, $state, $auth) {
+
+    $rootScope.$on( '$stateChangeStart', function(e, toState) {
+        if (toState.name === 'login'){
+          return;
+        }
+
+        if(!$auth.isAuthenticated()) {
+          e.preventDefault();
+          $state.go('login');
+        }
+    });
+});
