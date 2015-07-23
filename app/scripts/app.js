@@ -15,5 +15,6 @@ angular
     'ngTouch',
     'ui.router',
     'satellizer',
-    'toastr'
+    'toastr',
+    'ngTagsInput'
   ]);
