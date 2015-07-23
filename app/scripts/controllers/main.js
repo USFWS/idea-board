@@ -8,12 +8,16 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('MainCtrl', function ($scope, $auth, $window, $state) {
+  .controller('MainCtrl', function ($scope, $auth, $window, $state, toastr) {
 
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider).then(function (response) {
+        var message = 'Welcome, ' + response.data.user.name;
         $window.localStorage.user = JSON.stringify(response.data.user);
-        $state.go('home');
+        $state.go('profile');
+        toastr.success(message);
+      }).catch(function (response) {
+        toastr.error(response.data);
       });
     };
 
