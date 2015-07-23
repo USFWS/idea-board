@@ -8,10 +8,6 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('HomeCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('IdeasCtrl', function ($scope, ideas) {
+    $scope.ideas = ideas.data;
   });
