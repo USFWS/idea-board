@@ -14,5 +14,6 @@ angular
     'ngAria',
     'ngTouch',
     'ui.router',
-    'satellizer'
+    'satellizer',
+    'toastr'
   ]);
