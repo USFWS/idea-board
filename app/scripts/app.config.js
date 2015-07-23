@@ -10,21 +10,33 @@ angular.module('ideasApp')
         templateUrl: 'views/login.html'
       })
 
-      .state('home', {
-        url: '/home',
-        templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
+      .state('ideas', {
+        url: '/ideas',
+        templateUrl: 'views/ideas.html',
+        controller: 'IdeasCtrl',
+        resolve: {
+          ideas: function(Idea) {
+            return Idea.getAll();
+          }
+        }
+      })
+
+      .state('create', {
+        url: '/create',
+        templateUrl: 'views/create.html',
+        controller: 'CreateCtrl'
+      })
+
+      .state('detail', {
+        url: '/ideas/:id',
+        templateUrl: 'views/detail.html',
+        controller: 'DetailCtrl'
       })
 
       .state('profile', {
         url: '/profile',
         templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl',
-        resolve: {
-          profile: function(User) {
-            return User.getOne(User.getId());
-          }
-        }
+        controller: 'ProfileCtrl'
       });
 
     $authProvider.loginUrl = 'http://localhost:1337/auth/login';
