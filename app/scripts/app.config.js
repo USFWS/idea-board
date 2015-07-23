@@ -6,14 +6,20 @@ angular.module('ideasApp')
 
     $stateProvider
       .state('login', {
-        url: "/",
-        templateUrl: "views/login.html"
+        url: '/',
+        templateUrl: 'views/login.html'
       })
 
       .state('home', {
-        url: "/home",
-        templateUrl: "views/home.html",
+        url: '/home',
+        templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
+      })
+
+      .state('profile', {
+        url: '/profile',
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
       });
 
     $authProvider.loginUrl = 'http://localhost:1337/auth/login';
@@ -25,8 +31,8 @@ angular.module('ideasApp')
     });
   })
 
+  // Redirect user to login page if they're not logged in
   .run(function($rootScope, $location, $state, $auth) {
-
     $rootScope.$on( '$stateChangeStart', function(e, toState) {
         if (toState.name === 'login'){
           return;
