@@ -13,13 +13,14 @@ angular.module('ideasApp')
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider).then(function (response) {
         $window.localStorage.user = JSON.stringify(response.data.user);
+        $state.go('home');
       });
     };
 
     $scope.logOut = function () {
       $auth.logout();
       delete $window.localStorage.user;
-      $state.go('home');
+      $state.go('/');
     };
 
     $scope.isAuthenticated = function() {
