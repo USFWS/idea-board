@@ -20,7 +20,7 @@ angular.module('ideasApp')
     $scope.logOut = function () {
       $auth.logout();
       delete $window.localStorage.user;
-      $state.go('/');
+      $state.go('login');
     };
 
     $scope.isAuthenticated = function() {
