@@ -9,6 +9,8 @@
  */
 angular.module('ideasApp')
   .service('User', function ($http, $auth, API_URL) {
+    var payload = $auth.getPayload();
+
     function getAll() {
       return $http.get(API_URL + 'user');
     }
@@ -18,12 +20,10 @@ angular.module('ideasApp')
     }
 
     function getUsername() {
-      var payload = $auth.getPayload();
       return payload.name;
     }
 
     function getId() {
-      var payload = $auth.getPayload();
       return payload.sub;
     }
 
