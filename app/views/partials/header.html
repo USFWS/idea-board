@@ -1,6 +1,6 @@
 <header ng-show="isAuthenticated();">
   <nav class="navbar navbar-default">
-    <div class="container">
+    <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -9,18 +9,23 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" ui-sref="home">Idea Board</a>
+        <a class="navbar-brand" ui-sref="ideas">Idea Board</a>
+        <div class="pull-left">
+          <a ui-sref="profile">
+            <img class="navbar-pic" ng-src="{{user.headerpic}}" alt="Profile picture">
+          </a>
+        </div>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav">
-          <li><a ui-sref="home">Home</a></li>
+          <li><a ui-sref="ideas">Ideas</a></li>
           <li><a ui-sref="profile">Profile</a></li>
           <li><a ui-sref="rules">Rules</a></li>
           <li><a ui-sref="help">Help</a></li>
-          <li><a ui-sref="login" ng-click="logOut();">Logout</button></li>
+          <li><a ui-sref="login" ng-click="logOut();">Logout</a></li>
         </ul>
         <form class="navbar-form navbar-right" role="search">
           <div class="form-group">
