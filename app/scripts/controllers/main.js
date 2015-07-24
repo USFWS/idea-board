@@ -10,6 +10,8 @@
 angular.module('ideasApp')
   .controller('MainCtrl', function ($scope, $auth, $window, $state, toastr, User) {
 
+    $scope.query = '';
+
     User.getOne(User.getId()).then(function (response) {
       $scope.user = response.data;
       $scope.user.headerpic = $scope.user.picture.replace('?sz=50', '?sz=40');
