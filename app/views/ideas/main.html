@@ -7,6 +7,6 @@
 
 <ul ng-repeat="idea in ideas | filter:query" class="card-list">
   <li class="card row idea">
-    <div ng-include="'views/partials/idea.html'"></div>
+    <idea-card idea="idea"></idea-card>
   </li>
 </ul>
