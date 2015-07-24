@@ -1,5 +1,9 @@
 // bower:scss
+@import "bourbon/app/assets/stylesheets/_bourbon.scss";
 // endbower
+
+@import "card";
+@import "idea";
 
 .browsehappy {
   margin: 0.2em 0;
@@ -119,3 +123,11 @@ body {
 .idea-detail {
   border-right: 1px solid #dddddd;
 }
+
+.gi-1x { font-size: 1em; }
+.gi-2x { font-size: 2em; }
+.gi-3x { font-size: 3em; }
+.gi-4x { font-size: 4em; }
+.gi-5x { font-size: 5em; }
+
+.label { margin-right: 5px; }
