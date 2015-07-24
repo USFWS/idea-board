@@ -8,5 +8,7 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('ProfileCtrl', function () {
+  .controller('ProfileCtrl', function ($scope, user, $stateParams) {
+    $scope.user = user.data;
+    $scope.id = $stateParams.id;
   });
