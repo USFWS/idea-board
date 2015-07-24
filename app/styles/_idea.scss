@@ -1,0 +1,22 @@
+.idea {
+  display: block;
+  margin: auto;
+  max-width: 900px;
+}
+
+.idea-main {
+  border-right: 1px solid #ddd;
+}
+
+.idea-meta {
+  text-align: center;
+}
+
+.idea-creator {
+  padding: 0.5em;
+  border-top: 1px solid #ddd;
+
+  p {
+    margin-bottom: 0;
+  }
+}

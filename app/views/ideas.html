@@ -1,7 +1,36 @@
-<h1>Ideas</h1>
+<h1>Employee Idea Board</h1>
 
-<ul ng-repeat="idea in ideas">
-  <li>
-    <h2>{{ idea.title }}</h2>
+<div class="text-center">
+  <span class="glyphicon glyphicon-lightbulb"></span>
+  <h2><a ui-sref="create">Create a New Idea</a></h2>
+</div>
+
+<ul ng-repeat="idea in ideas" class="card-list">
+  <li class="card row idea">
+    <div class="col-xs-12 col-sm-8 idea-main">
+      <h2>{{ idea.title }}</h2>
+      <p>
+        <span ng-repeat="tag in idea.tags" class="label label-primary">{{ tag.text }}</span>
+      </p>
+      <p>{{ idea.description }}</p>
+      <h2>Attachments</h2>
+
+      <h2>Questions</h2>
+    </div>
+    <div class="col-xs-12 col-sm-4 idea-meta">
+      <button class="btn btn-circle btn-success btn-lg" ng-click="submitVote(idea.id);" ng-hide="hasVoted(idea)">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+      <button class="btn btn-circle btn-warning btn-lg" ng-click="removeVote(idea.id);" ng-show="hasVoted(idea)">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
+      <p ng-hide="hasVoted(idea)">Vote for this idea</p>
+      <p ng-show="hasVoted(idea)">Remove your vote</p>
+      <p>{{ idea.score.length }} vote<span ng-show="idea.score.length != 1">s</span> so far</p>
+      <p>Status: {{ idea.status }}</p>
+    </div>
+    <div class="idea-creator col-xs-12">
+      <p>Posted by: <a ui-sref="profile.detail({ id: idea.creator.id })">{{ idea.creator.name }}</a> on {{ idea.createdAt | date: 'longDate' }}</p>
+    </div>
   </li>
 </ul>

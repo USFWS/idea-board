@@ -23,9 +23,14 @@ angular.module('ideasApp')
       return $http.post(API_URL + 'idea', params);
     }
 
+    function toggleVote() {
+      // If idea already has a vote from
+    }
+
     return {
       getAll: getAll,
       getOne: getOne,
-      create: create
+      create: create,
+      toggleVote: toggleVote
     };
   });
