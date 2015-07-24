@@ -19,18 +19,12 @@ angular.module('ideasApp')
 
     function create(params) {
       params.creator = User.getId();
-      console.log(params);
       return $http.post(API_URL + 'idea', params);
-    }
-
-    function toggleVote() {
-      // If idea already has a vote from
     }
 
     return {
       getAll: getAll,
       getOne: getOne,
-      create: create,
-      toggleVote: toggleVote
+      create: create
     };
   });
