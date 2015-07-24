@@ -27,10 +27,20 @@ angular.module('ideasApp')
       return payload.sub;
     }
 
+    function submitVote(url) {
+      return $http.post(API_URL + url);
+    }
+
+    function removeVote(url) {
+      return $http.delete(API_URL + url);
+    }
+
     return {
       getAll: getAll,
       getOne: getOne,
       getUsername: getUsername,
-      getId: getId
+      getId: getId,
+      submitVote: submitVote,
+      removeVote: removeVote
     };
   });
