@@ -12,7 +12,7 @@ angular.module('ideasApp')
 
       .state('ideas', {
         url: '/ideas',
-        templateUrl: 'views/ideas.html',
+        templateUrl: 'views/ideas/main.html',
         controller: 'IdeasCtrl',
         resolve: {
           ideas: function(Idea) {
@@ -23,19 +23,41 @@ angular.module('ideasApp')
 
       .state('create', {
         url: '/create',
-        templateUrl: 'views/create.html',
+        templateUrl: 'views/ideas/create.html',
         controller: 'CreateCtrl'
       })
 
       .state('detail', {
         url: '/ideas/:id',
-        templateUrl: 'views/detail.html',
-        controller: 'DetailCtrl'
+        templateUrl: 'views/ideas/detail.html',
+        controller: 'DetailCtrl',
+        resolve: {
+          idea: function(Idea, $stateParams) {
+            return Idea.getOne($stateParams.id);
+          }
+        }
       })
 
       .state('profile', {
         url: '/profile',
-        templateUrl: 'views/profile.html',
+        templateUrl: 'views/profile/main.html',
+        controller: 'ProfileCtrl',
+        resolve: {
+          user: function(User) {
+            return User.getOne(User.getId());
+          }
+        }
+      })
+
+      .state('profile.detail', {
+        url: '/:id',
+        templateUrl: 'views/profile/detail.html',
+        controller: 'ProfileCtrl'
+      })
+
+      .state('profile.edit', {
+        url: '/edit/:id',
+        templateUrl: 'views/profile/edit.html',
         controller: 'ProfileCtrl'
       });
 

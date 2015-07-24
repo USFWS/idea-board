@@ -1,23 +1,15 @@
-<h1>Employee Idea Board</h1>
-
-<div class="text-center">
-  <span class="glyphicon glyphicon-lightbulb"></span>
-  <h2><a ui-sref="create">Create a New Idea</a></h2>
-</div>
-
-<ul ng-repeat="idea in ideas" class="card-list">
-  <li class="card row idea">
-    <div class="col-xs-12 col-sm-8 idea-main">
+<div class="card row idea">
+  <div class="col-xs-12 col-sm-8 idea-main">
       <h2>{{ idea.title }}</h2>
       <p>
         <span ng-repeat="tag in idea.tags" class="label label-primary">{{ tag.text }}</span>
       </p>
       <p>{{ idea.description }}</p>
-      <h2>Attachments</h2>
+      <h2 id="attachments">Attachments</h2>
 
-      <h2>Questions</h2>
+      <h2 id="questions">Questions</h2>
     </div>
-    <div class="col-xs-12 col-sm-4 idea-meta">
+    <div class="idea-metrics text-center col-xs-12 col-md-4">
       <button class="btn btn-circle btn-success btn-lg" ng-click="submitVote(idea.id);" ng-hide="hasVoted(idea)">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
@@ -26,11 +18,18 @@
       </button>
       <p ng-hide="hasVoted(idea)">Vote for this idea</p>
       <p ng-show="hasVoted(idea)">Remove your vote</p>
+      <hr>
       <p>{{ idea.score.length }} vote<span ng-show="idea.score.length != 1">s</span> so far</p>
+      <hr>
       <p>Status: {{ idea.status }}</p>
+      <hr>
+      <p>Share:</p>
+      <span class="glyphicon glyphicon-envelope gi-2x"></span>
+      <a ng-href="{{ idea.link }}"><span class="glyphicon glyphicon-link gi-2x"></span></a>
+      <hr>
+      <p><span class="glyphicon glyphicon-info-sign"></span> links are only accessible to FWS employees</p>
     </div>
     <div class="idea-creator col-xs-12">
       <p>Posted by: <a ui-sref="profile.detail({ id: idea.creator.id })">{{ idea.creator.name }}</a> on {{ idea.createdAt | date: 'longDate' }}</p>
     </div>
-  </li>
-</ul>
+</div>
