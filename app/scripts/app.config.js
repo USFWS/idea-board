@@ -40,25 +40,28 @@ angular.module('ideasApp')
 
       .state('profile', {
         url: '/profile',
-        templateUrl: 'views/profile/main.html',
+        templateUrl: 'views/profile/edit.html',
         controller: 'ProfileCtrl',
         resolve: {
-          user: function(User) {
+          me: function(User) {
             return User.getOne(User.getId());
           }
         }
       })
 
-      .state('profile.detail', {
-        url: '/:id',
+      .state('user-detail', {
+        url: '/profile/:id',
         templateUrl: 'views/profile/detail.html',
-        controller: 'ProfileCtrl'
-      })
-
-      .state('profile.edit', {
-        url: '/edit/:id',
-        templateUrl: 'views/profile/edit.html',
-        controller: 'ProfileCtrl'
+        controller: 'UserDetailCtrl',
+        resolve: {
+          user: function(User, $stateParams) {
+            return User.getOne($stateParams.id);
+          },
+          ideas: function(Idea, $stateParams) {
+            var query = '?creator=' + $stateParams.id;
+            return Idea.getAll(query);
+          }
+        }
       });
 
     $authProvider.loginUrl = 'http://localhost:1337/auth/login';
