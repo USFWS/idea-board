@@ -5,7 +5,7 @@
   <h2><a ui-sref="create">Create a New Idea</a></h2>
 </div>
 
-<ul ng-repeat="idea in ideas | filter:query" class="card-list">
+<ul ng-repeat="idea in ideas" class="card-list">
   <li class="card row idea">
     <idea idea="idea" id="{{idea.creator.id}}"></idea>
   </li>
