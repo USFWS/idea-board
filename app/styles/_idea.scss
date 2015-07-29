@@ -6,6 +6,7 @@
 
 .idea-meta {
   text-align: center;
+  margin-top: 0.5em;
 }
 
 .idea-creator {
@@ -15,6 +16,10 @@
   p {
     margin-bottom: 0;
   }
+}
+
+.idea-main .glyphicon {
+  margin-right: 0.5em;
 }
 
 @media (min-width: 768px) {
