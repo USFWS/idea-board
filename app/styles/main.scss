@@ -5,6 +5,7 @@
 @import "card";
 @import "idea";
 @import "profile";
+@import "typeahead";
 
 .browsehappy {
   margin: 0.2em 0;
@@ -132,3 +133,7 @@ body {
 .gi-5x { font-size: 5em; }
 
 .label { margin-right: 5px; }
+
+input[typeahead] {
+  min-width: 225px;
+}

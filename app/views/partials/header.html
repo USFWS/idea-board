@@ -25,11 +25,11 @@
           <li><a ui-sref="ideas">Ideas</a></li>
           <li><a ui-sref="rules">Rules</a></li>
           <li><a ui-sref="help">Help</a></li>
-          <li><a ui-sref="login" ng-click="logOut();">Logout</a></li>
+          <li><a ui-sref="login" ng-click="logOut()">Logout</a></li>
         </ul>
         <form class="navbar-form navbar-right" role="search">
           <div class="form-group">
-            <input ng-model="query" type="text" class="form-control" placeholder="Search ideas...">
+            <input type="search" ng-model="selected" typeahead="idea for idea in ideas | filter:$viewValue | limitTo:8" class="form-control" placeholder="Search ideas..." typeahead-template-url="views/partials/typeahead.html" typeahead-input-formatter="formatInput($model)">
           </div>
         </form>
       </div><!-- /.navbar-collapse -->

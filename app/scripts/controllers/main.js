@@ -8,21 +8,22 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('MainCtrl', function ($scope, $auth, $window, $state, toastr, User) {
-
-    $scope.query = '';
+  .controller('MainCtrl', function ($scope, $auth, $window, $state, toastr, User, Idea) {
 
     User.getOne(User.getId()).then(function (response) {
       $scope.user = response.data;
       $scope.user.headerpic = $scope.user.picture.replace('?sz=50', '?sz=40');
     });
 
+    Idea.getAll().then(function (response) {
+      $scope.ideas = response.data;
+    });
+
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider).then(function (response) {
-        var message = 'Welcome, ' + User.getUsername();
         $auth.setToken(response.data.token);
         $state.go('profile');
-        toastr.success(message);
+        toastr.success('Welcome, ' + User.getUsername());
       }).catch(function (response) {
         toastr.error(response.data);
       });
@@ -40,5 +41,9 @@ angular.module('ideasApp')
 
     $scope.isAdmin = function() {
       return User.isAdmin();
+    };
+
+    $scope.formatInput = function(idea) {
+      if (idea) return idea.title;
     };
   });
