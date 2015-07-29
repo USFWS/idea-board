@@ -9,8 +9,9 @@
  */
 angular.module('ideasApp')
   .service('Idea', function ($http, API_URL, User) {
-    function getAll() {
-      return $http.get(API_URL + 'idea');
+    function getAll(query) {
+      var url = (query) ? API_URL + 'idea' + query : API_URL + 'idea';
+      return $http.get(url);
     }
 
     function getOne(id) {
