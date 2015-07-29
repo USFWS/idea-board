@@ -7,20 +7,20 @@
  * # ideaCard
  */
 angular.module('ideasApp')
-  .directive('ideaCard', function () {
+  .directive('idea', function () {
     return {
       templateUrl: 'views/partials/idea.html',
       restrict: 'E',
       scope: {
         idea: '=',
-        user: '='
+        id: '@'
       },
       controller: function ($scope, User, Idea, toastr) {
 
         $scope.hasVoted = function() {
           var voted;
           _.each($scope.idea.score, function(el) {
-            voted = (el.id === User.getId()) ? true : false;
+            voted = (el.id === $scope.id) ? true : false;
           });
           return voted;
         };
