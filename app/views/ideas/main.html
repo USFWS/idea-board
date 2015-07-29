@@ -7,6 +7,6 @@
 
 <ul ng-repeat="idea in ideas | filter:query" class="card-list">
   <li class="card row idea">
-    <idea-card idea="idea"></idea-card>
+    <idea idea="idea" id="{{idea.creator.id}}"></idea>
   </li>
 </ul>
