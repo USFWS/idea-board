@@ -37,4 +37,8 @@ angular.module('ideasApp')
     $scope.isAuthenticated = function() {
       return $auth.isAuthenticated();
     };
+
+    $scope.isAdmin = function() {
+      return User.isAdmin();
+    };
   });
