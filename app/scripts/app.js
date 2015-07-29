@@ -16,5 +16,6 @@ angular
     'ui.router',
     'satellizer',
     'toastr',
-    'ngTagsInput'
+    'ngTagsInput',
+    'ui.bootstrap'
   ]);
