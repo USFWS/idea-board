@@ -62,6 +62,17 @@ angular.module('ideasApp')
         controller: 'NewTagCtrl'
       })
 
+      .state('tags.review', {
+        url: '/review',
+        templateUrl: 'views/tags/review.html',
+        controller: 'ReviewTagCtrl',
+        resolve: {
+          proposed: function(Tag) {
+            return Tag.getAll('?approved=false');
+          }
+        }
+      })
+
       .state('profile', {
         url: '/profile',
         templateUrl: 'views/profile/edit.html',

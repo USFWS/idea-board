@@ -21,17 +21,23 @@ angular.module('ideasApp')
     }
 
     function create(tag) {
-      return $http.create(endpointURL, tag);
+      return $http.post(endpointURL, tag);
     }
 
     function destroy(id) {
       return $http.delete(endpointURL + '/' + id );
     }
 
+    function approve(id) {
+      var approved = { "approved": true };
+      return $http.put(endpointURL + '/' + id, approved);
+    }
+
     return {
       getAll: getAll,
       getOne: getOne,
       create: create,
-      destroy: destroy
+      destroy: destroy,
+      approve: approve
     };
   });

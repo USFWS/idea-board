@@ -1,0 +1,15 @@
+<h2>Review Proposed Tags</h2>
+<p>The approval process for tags is designed to keep the tags list from growing exponentially. Tags that are candidates for approval are those that can apply more than a single idea.  Edge-case tags (likely to be used very rarely) are not good at relating similar tags and do not help the system.</p>
+<p>Try to avoid approving tags that could be considered synonyms for existing tags.</p>
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="tag in needReview">
+    <p><strong>{{ tag.text }}</strong>: {{ tag.description }}</p>
+    <button class="btn btn-success" ng-click="approveTag(tag)">
+      <span class="glyphicon glyphicon-check"></span> Approve
+    </button>
+    <button class="btn btn-danger" ng-click="rejectTag(tag)">
+      <span class="glyphicon glyphicon-remove"></span> Reject
+    </button>
+  </li>
+</ul>
