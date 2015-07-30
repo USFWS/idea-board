@@ -1,0 +1,7 @@
+<h1>Tags</h1>
+<input type="search" ng-model="query" class="form-control" placeholder="Filter tags...">
+<ul>
+  <li ng-repeat="tag in tags | filter:query ">{{tag.text}}</li>
+</ul>
+
+<div ui-view></div>

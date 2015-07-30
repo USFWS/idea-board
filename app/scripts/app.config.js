@@ -38,6 +38,30 @@ angular.module('ideasApp')
         }
       })
 
+      .state('tags', {
+        url: '/tags',
+        templateUrl: 'views/tags/main.html',
+        controller: 'TagCtrl',
+        resolve: {
+          tags: function(Tag) {
+            var query = '?approved=true';
+            return Tag.getAll(query);
+          }
+        }
+      })
+
+      .state('tags.detail', {
+        url: '/detail/:id',
+        templateUrl: 'views/tags/detail.html',
+        controller: 'TagDetailCtrl'
+      })
+
+      .state('tags.create', {
+        url: '/create',
+        templateUrl: 'views/tags/create.html',
+        controller: 'NewTagCtrl'
+      })
+
       .state('profile', {
         url: '/profile',
         templateUrl: 'views/profile/edit.html',
