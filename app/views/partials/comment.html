@@ -8,12 +8,16 @@
     <img ng-src="{{ comment.user.picture }}" alt="{{ comment.user.name }}'s Profile Picture">
     <p>{{ comment.body }}</p>
     <p class="comment-mods">
-      <span class="glyphicon glyphicon-pencil" title="Edit Comment"></span>
-      <span class="glyphicon glyphicon-flag" ng-click="toggleFlag(comment)" ng-class="{ 'comment-flag': comment.flagged, 'comment-no-flag': !comment.flagged }" title="Flag Innapropriate Comment"></span>
+      <span class="glyphicon glyphicon-pencil"
+        popover="Edit Comment"
+        popover-trigger="mouseenter"></span>
+      <span class="glyphicon glyphicon-flag"
+        ng-click="toggleFlag(comment)"
+        ng-class="{ 'comment-flag': comment.flagged, 'comment-no-flag': !comment.flagged }"popover="Flag Innapropriate Comment"
+        popover-trigger="mouseenter"></span>
       <span class="glyphicon glyphicon-trash"
         ng-click="destroy(comment)"
-        title="Delete Comment"
-        popover="I appeared on mouse enter!"
+        popover="Delete Comment"
         popover-trigger="mouseenter"></span>
     </p>
   </li>
