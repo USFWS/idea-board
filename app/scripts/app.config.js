@@ -62,6 +62,10 @@ angular.module('ideasApp')
         resolve: {
           tag: function(Tag, $stateParams) {
             return Tag.getOne($stateParams.id);
+          },
+          ideas: function(tag, Idea) {
+            var query = '?tags.text=' + tag.data.text;
+            return Idea.getAll(query);
           }
         }
       })

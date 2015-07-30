@@ -1,2 +1,8 @@
 <h1>{{ tag.text }}</h1>
 <p ng-show="tag.description">Description: {{ tag.description }}</p>
+
+<ul ng-repeat="idea in ideas" class="card-list">
+  <li class="card row idea">
+    <idea idea="idea" id="{{ userId }}"></idea>
+  </li>
+</ul>
