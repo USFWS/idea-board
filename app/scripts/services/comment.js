@@ -21,7 +21,7 @@ angular.module('ideasApp')
     }
 
     function create(comment) {
-      comment.commentor = User.getId();
+      comment.commenter = User.getId();
       return $http.post(endpointURL, comment);
     }
 

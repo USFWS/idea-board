@@ -16,16 +16,17 @@ angular.module('ideasApp')
         ideaId: '@'
       },
       controller: function($scope, Comment) {
-        $scope.newComment = { ideaId: $scope.ideaId };
-        $scope.comments = ($scope.comments) ? $scope.comments : [];
+        $scope.newComment = { idea: $scope.ideaId };
+        console.log($scope.comments);
 
         $scope.addComment = function() {
           if (!$scope.newComment.body) return;
-          // $scope.comments.push($scope.newComment);
 
           Comment.create($scope.newComment).then(function (response) {
             console.log(response);
+            $scope.comments.push(response.data);
             $scope.newComment.body = '';
+            console.log($scope.comments);
           });
         };
       }
