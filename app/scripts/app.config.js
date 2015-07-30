@@ -58,7 +58,12 @@ angular.module('ideasApp')
       .state('tags.detail', {
         url: '/detail/:id',
         templateUrl: 'views/tags/detail.html',
-        controller: 'TagDetailCtrl'
+        controller: 'TagDetailCtrl',
+        resolve: {
+          tag: function(Tag, $stateParams) {
+            return Tag.getOne($stateParams.id);
+          }
+        }
       })
 
       .state('tags.create', {
