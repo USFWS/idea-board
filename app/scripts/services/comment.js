@@ -8,18 +8,31 @@
  * Service in the ideasApp.
  */
 angular.module('ideasApp')
-  .service('Comment', function (API_URL, $http) {
-    var getAll = function(query) {
-      var url = (query) ? API_URL + 'comment' + query : API_URL + 'comment';
-      return $http.get(url);
-    };
+  .service('Comment', function (API_URL, User, $http) {
+    var endpointURL = API_URL + 'comment';
 
-    var getOne = function(id) {
-      return $http.get(API_URL + 'comment/' + id);
-    };
+    function getAll(query) {
+      var url = (query) ? endpointURL + query : endpointURL;
+      return $http.get(url);
+    }
+
+    function getOne(id) {
+      return $http.get(endpointURL + '/' + id);
+    }
+
+    function create(comment) {
+      comment.commentor = User.getId();
+      return $http.post(endpointURL, comment);
+    }
+
+    function destroy(id) {
+      return $http.delete(endpointURL + '/', id);
+    }
 
     return {
       getAll: getAll,
-      getOne: getOne
+      getOne: getOne,
+      create: create,
+      destroy: destroy
     };
   });

@@ -9,17 +9,29 @@
  */
 angular.module('ideasApp')
   .service('Tag', function ($http, API_URL) {
-    var getAll = function(query) {
-      var url = (query) ? API_URL + 'tag' + query : API_URL + 'tag';
-      return $http.get(url);
-    };
+    var endpointURL = API_URL + 'tag';
 
-    var getOne = function(id) {
-      return $http.get(API_URL + 'tag/' + id);
-    };
+    function getAll(query) {
+      var url = (query) ? endpointURL + query : endpointURL;
+      return $http.get(url);
+    }
+
+    function getOne(id) {
+      return $http.get(endpointURL + '/' + id);
+    }
+
+    function create(tag) {
+      return $http.create(endpointURL, tag);
+    }
+
+    function destroy(id) {
+      return $http.delete(endpointURL + '/' + id );
+    }
 
     return {
       getAll: getAll,
-      getOne: getOne
+      getOne: getOne,
+      create: create,
+      destroy: destroy
     };
   });
