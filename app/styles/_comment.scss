@@ -1,0 +1,20 @@
+.comment-bubble {
+  @include clearfix;
+  padding: 0.5em;
+  margin: 0.5em 0;
+  border: 1px solid #ccc;
+
+  &:nth-child(even) {
+    img {
+      float: right;
+      margin-left: 0.5em;
+    }
+  }
+
+  &:nth-child(odd) {
+    img {
+      float: left;
+      margin-right: 0.5em;
+    }
+  }
+}
