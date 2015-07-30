@@ -1,8 +1,9 @@
 .comment-bubble {
   @include clearfix;
-  padding: 0.5em;
+  padding: 0.5em 0.5em 2em 0.5em;
   margin: 0.5em 0;
   border: 1px solid #ccc;
+  position: relative;
 
   &:nth-child(even) {
     img {
@@ -17,4 +18,19 @@
       margin-right: 0.5em;
     }
   }
+}
+
+.comment-mods {
+  position: absolute;
+  bottom: 0;
+  height: 1em;
+  padding: 5px;
+}
+
+.comment-flag {
+  color: red;
+}
+
+.comment-no-flag {
+  color: #ccc;
 }
