@@ -17,16 +17,22 @@ angular.module('ideasApp')
       },
       controller: function($scope, Comment) {
         $scope.newComment = { idea: $scope.ideaId };
-        console.log($scope.comments);
+
+        angular.forEach($scope.comments, function(comment) {
+          comment = Comment.attachUserInfo(comment);
+        });
 
         $scope.addComment = function() {
           if (!$scope.newComment.body) return;
-
           Comment.create($scope.newComment).then(function (response) {
-            console.log(response);
             $scope.comments.push(response.data);
             $scope.newComment.body = '';
-            console.log($scope.comments);
+          });
+        };
+
+        $scope.toggleFlag = function(comment) {
+          Comment.flag(comment).then(function(response) {
+            comment.flagged = response.data.flagged;
           });
         };
       }

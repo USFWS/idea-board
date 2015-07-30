@@ -20,9 +20,24 @@ angular.module('ideasApp')
       return $http.get(endpointURL + '/' + id);
     }
 
+    function flag(comment) {
+      var flagged = { "flagged": !comment.flagged};
+      return $http.put(endpointURL + '/' + comment.id, flagged);
+    }
+
     function create(comment) {
       comment.commenter = User.getId();
       return $http.post(endpointURL, comment);
+    }
+
+    function attachUserInfo(comment) {
+      User.getOne(comment.commenter).then(function (response) {
+        comment.user = {
+          picture: response.data.picture,
+          name: response.data.name
+        };
+        return comment;
+      });
     }
 
     function destroy(id) {
@@ -33,6 +48,8 @@ angular.module('ideasApp')
       getAll: getAll,
       getOne: getOne,
       create: create,
-      destroy: destroy
+      destroy: destroy,
+      flag: flag,
+      attachUserInfo: attachUserInfo
     };
   });
