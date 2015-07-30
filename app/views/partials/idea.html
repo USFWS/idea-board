@@ -1,7 +1,7 @@
 <div class="col-xs-12 col-sm-8 idea-main">
-  <h2><a ng-href="{{ '#/ideas/' + idea.id }}">{{ idea.title }}</a></h2>
+  <h2><a ui-sref="detail({ id: idea.id })">{{ idea.title }}</a></h2>
   <p>
-    <span ng-repeat="tag in idea.tags" class="label label-primary">{{ tag.text }}</span>
+    <a ng-repeat="tag in idea.tags" ui-sref="tags.detail({ id: tag.id })" class="label label-primary">{{ tag.text }}</a>
   </p>
   <p>{{ idea.description }}</p>
   <div ng-if="!idea.detailed">

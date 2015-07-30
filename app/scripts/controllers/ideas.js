@@ -10,6 +10,5 @@
 angular.module('ideasApp')
   .controller('IdeasCtrl', function ($scope, ideas) {
     $scope.ideas = ideas.data;
-    console.log($scope.ideas.comments);
     $scope.detailed = false;
   });
