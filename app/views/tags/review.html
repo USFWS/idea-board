@@ -2,6 +2,8 @@
 <p>The approval process for tags is designed to keep the tags list from growing exponentially. Tags that are candidates for approval are those that can apply more than a single idea.  Edge-case tags (likely to be used very rarely) are not good at relating similar tags and do not help the system.</p>
 <p>Try to avoid approving tags that could be considered synonyms for existing tags.</p>
 
+<h3 ng-if="needReview.length === 0" class="text-success">Yippee! No tags currently require review.</h3>
+
 <ul class="list-group">
   <li class="list-group-item" ng-repeat="tag in needReview">
     <p><strong>{{ tag.text }}</strong>: {{ tag.description }}</p>

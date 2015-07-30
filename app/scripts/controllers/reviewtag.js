@@ -10,6 +10,7 @@
 angular.module('ideasApp')
   .controller('ReviewTagCtrl', function ($scope, toastr, Tag, proposed) {
     $scope.needReview = proposed.data;
+    console.log($scope.needReview);
 
     $scope.rejectTag = function(tag) {
       // Need to notify user that proposed the tag that it has been rejected
