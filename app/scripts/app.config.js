@@ -24,7 +24,12 @@ angular.module('ideasApp')
       .state('create', {
         url: '/create',
         templateUrl: 'views/ideas/create.html',
-        controller: 'CreateCtrl'
+        controller: 'CreateCtrl',
+        resolve: {
+          tags: function(Tag) {
+            return Tag.getAll('?approved=true');
+          }
+        }
       })
 
       .state('detail', {
