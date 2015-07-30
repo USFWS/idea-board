@@ -8,7 +8,8 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('IdeasCtrl', function ($scope, ideas, $location) {
+  .controller('IdeasCtrl', function ($scope, ideas) {
     $scope.ideas = ideas.data;
-    $scope.location = $location.$$absUrl;
+    console.log($scope.ideas.comments);
+    $scope.detailed = false;
   });
