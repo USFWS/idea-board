@@ -8,10 +8,6 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('TagDetailCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('TagDetailCtrl', function ($scope, tag) {
+    $scope.tag = tag.data;
   });
