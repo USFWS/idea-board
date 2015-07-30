@@ -35,6 +35,14 @@ angular.module('ideasApp')
             comment.flagged = response.data.flagged;
           });
         };
+
+        $scope.destroy = function(comment) {
+          Comment.destroy(comment.id).then(function() {
+            $scope.comments = _.reject($scope.comments, function(com){
+              return com.id === comment.id;
+            });
+          });
+        };
       }
     };
   });

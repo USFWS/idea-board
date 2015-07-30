@@ -41,7 +41,7 @@ angular.module('ideasApp')
     }
 
     function destroy(id) {
-      return $http.delete(endpointURL + '/', id);
+      return $http.delete(endpointURL + '/' + id);
     }
 
     return {
