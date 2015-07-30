@@ -44,12 +44,17 @@ angular.module('ideasApp')
       return $http.delete(endpointURL + '/' + id);
     }
 
+    function update(comment) {
+      return $http.put(endpointURL + '/' + comment.id, comment);
+    }
+
     return {
       getAll: getAll,
       getOne: getOne,
       create: create,
       destroy: destroy,
       flag: flag,
-      attachUserInfo: attachUserInfo
+      attachUserInfo: attachUserInfo,
+      update: update
     };
   });
