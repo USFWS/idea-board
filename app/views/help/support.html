@@ -1,0 +1,18 @@
+<div class="container">
+  <p>Do you have a question about how the employee idea board works?  Before you submit a question by email please check to see if you can find an answer in the <a ui-sref="documentation">help documentation</a> and the site <a ui-sref="rules">rules</a>.</p>
+  <form action="//formspree.io/roy_hewitt@fws.gov" method="POST">
+    <div class="form-group">
+      <label for="reply-to">Your Email address</label>
+      <input type="email" name="_replyto" class="form-control" id="reply-to" ng-model="user.email">
+    </div>
+    <div class="form-group">
+      <label for="body">Message/Question</label>
+      <textarea name="body" id="body" class="form-control"></textarea>
+    </div>
+    <input type="submit" value="Send" class="btn btn-primary">
+
+    <input type="hidden" name="_cc" value="jennifer_strickland@fws.gov">
+    <input type="hidden" name="_subject" value="USFWS Employee Idea Board">
+    <input type="text" name="_gotcha" style="display:none" />
+  </form>
+</div>

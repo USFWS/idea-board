@@ -8,7 +8,7 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('MainCtrl', function ($scope, $auth, $window, $state, toastr, User, Idea) {
+  .controller('MainCtrl', function ($scope, $auth, $window, $state, toastr, User, Idea, Tag) {
 
     if ($auth.isAuthenticated()) {
       User.getOne(User.getId()).then(function (response) {
@@ -21,6 +21,11 @@ angular.module('ideasApp')
 
     Idea.getAll().then(function (response) {
       $scope.ideas = response.data;
+    });
+
+    Tag.getAll('?approved=false').then(function (response) {
+      console.log(response.data);
+      $scope.admin = {tags: response.data};
     });
 
     $scope.authenticate = function(provider) {

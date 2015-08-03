@@ -111,6 +111,21 @@ angular.module('ideasApp')
             return Idea.getAll(query);
           }
         }
+      })
+
+      .state('support', {
+        url: '/help/support',
+        templateUrl: 'views/help/support.html'
+      })
+
+      .state('rules', {
+        url: '/help/rules',
+        templateUrl: 'views/help/rules.html'
+      })
+
+      .state('documentation', {
+        url: '/help/documentation',
+        templateUrl: 'views/help/documentation.html'
       });
 
     $authProvider.loginUrl = 'http://localhost:1337/auth/login';
