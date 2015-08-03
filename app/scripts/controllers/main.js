@@ -24,7 +24,6 @@ angular.module('ideasApp')
     });
 
     Tag.getAll('?approved=false').then(function (response) {
-      console.log(response.data);
       $scope.admin = {tags: response.data};
     });
 
