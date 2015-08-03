@@ -10,10 +10,14 @@
 angular.module('ideasApp')
   .controller('MainCtrl', function ($scope, $auth, $window, $state, toastr, User, Idea) {
 
-    User.getOne(User.getId()).then(function (response) {
-      $scope.user = response.data;
-      $scope.user.headerpic = $scope.user.picture.replace('?sz=50', '?sz=40');
-    });
+    if ($auth.isAuthenticated()) {
+      User.getOne(User.getId()).then(function (response) {
+        $scope.user = response.data;
+        $scope.user.headerpic = $scope.user.picture.replace('?sz=50', '?sz=40');
+      });
+    } else {
+      $state.go('login');
+    }
 
     Idea.getAll().then(function (response) {
       $scope.ideas = response.data;
