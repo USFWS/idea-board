@@ -46,6 +46,9 @@ angular.module('ideasApp')
         resolve: {
           idea: function(Idea, $stateParams) {
             return Idea.getOne($stateParams.id);
+          },
+          user: function(User) {
+            return User.getOne(User.getId());
           }
         }
       })
@@ -84,7 +87,19 @@ angular.module('ideasApp')
 
       .state('tags.detail', {
         url: '/:id',
-        templateUrl: 'views/tags/detail.html'
+        templateUrl: 'views/tags/detail.html',
+        controller: 'TagDetailCtrl',
+        resolve: {
+          tag: function(Tag, $stateParams) {
+            return Tag.getOne($stateParams.id);
+          },
+          ideas: function(tag, Idea) {
+            return Idea.getAll('?tags.text[]='+ tag.data.text);
+          },
+          user: function(User) {
+            return User.getOne(User.getId());
+          }
+        }
       })
 
       .state('profile', {
@@ -118,18 +133,23 @@ angular.module('ideasApp')
         }
       })
 
-      .state('support', {
-        url: '/help/support',
-        templateUrl: 'views/help/support.html'
+      .state('help', {
+        url: '/help',
+        template: '<div ui-view/>'
       })
 
-      .state('rules', {
-        url: '/help/rules',
+      .state('help.rules', {
+        url: '/rules',
         templateUrl: 'views/help/rules.html'
       })
 
-      .state('documentation', {
-        url: '/help/documentation',
+      .state('help.support', {
+        url: '/support',
+        templateUrl: 'views/help/support.html'
+      })
+
+      .state('help.documentation', {
+        url: '/documentation',
         templateUrl: 'views/help/documentation.html'
       });
 
