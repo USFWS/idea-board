@@ -8,13 +8,17 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('HeaderCtrl', function ($scope, $auth, $state, User, Tag) {
+  .controller('HeaderCtrl', function ($scope, $auth, $state, User, Tag, Idea) {
     User.getPicture(40).then(function (picture) {
       $scope.picture = picture;
     });
 
     Tag.getAll('?approved=false').then(function (response) {
       $scope.admin = {tags: response.data};
+    });
+
+    Idea.getAll().then(function (response) {
+      $scope.ideas = response.data;
     });
 
     $scope.logOut = function () {
