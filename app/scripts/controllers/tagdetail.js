@@ -8,8 +8,8 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('TagDetailCtrl', function ($scope, tag, ideas, User) {
+  .controller('TagDetailCtrl', function ($scope, tag) {
     $scope.tag = tag.data;
-    $scope.ideas = ideas.data;
-    $scope.userId = User.getId();
+    // $scope.ideas = ideas.data;
+    // $scope.userId = User.getId();
   });

@@ -1,8 +1,10 @@
-<h1>{{ tag.text }}</h1>
-<p ng-show="tag.description">Description: {{ tag.description }}</p>
+<div class="container">
+  <h1><span class="glyphicon glyphicon-tag"></span> {{ tag.text }}</h1>
+  <p ng-show="tag.description">Description: {{ tag.description }}</p>
 
-<ul ng-repeat="idea in ideas" class="card-list">
-  <li class="card row idea">
-    <idea idea="idea" id="{{ userId }}"></idea>
-  </li>
-</ul>
+  <ul ng-repeat="idea in ideas" class="card-list">
+    <li class="card row idea">
+      <idea idea="idea" id="{{ userId }}"></idea>
+    </li>
+  </ul>
+</div>
