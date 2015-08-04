@@ -1,4 +1,4 @@
-<header ng-show="isAuthenticated()">
+<header ng-controller="HeaderCtrl" ng-show="isAuthenticated()">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -12,7 +12,7 @@
         <a class="navbar-brand" ui-sref="ideas">Idea Board</a>
         <div class="pull-left">
           <a ui-sref="profile">
-            <img class="navbar-pic" ng-src="{{user.headerpic}}" alt="Profile picture">
+            <img class="navbar-pic" ng-src="{{ picture }}" alt="Profile picture">
           </a>
         </div>
       </div>
@@ -32,8 +32,8 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a ui-sref="tags">Filter Tags</a></li>
-              <li><a ui-sref="tags.create">Propose a Tag</a></li>
+              <li><a ui-sref="tags.list">Filter Tags</a></li>
+              <li><a ui-sref="tags.new">Propose a Tag</a></li>
             </ul>
           </li>
           <li class="dropdown">
