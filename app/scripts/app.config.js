@@ -89,6 +89,12 @@ angular.module('ideasApp')
 
       .state('profile', {
         url: '/profile',
+        abstract: true,
+        template: '<div ui-view/>'
+      })
+
+      .state('profile.me', {
+        url: '/me',
         templateUrl: 'views/profile/edit.html',
         controller: 'ProfileCtrl',
         resolve: {
@@ -98,17 +104,16 @@ angular.module('ideasApp')
         }
       })
 
-      .state('user-detail', {
-        url: '/profile/:id',
+      .state('profile.detail', {
+        url: '/:id',
         templateUrl: 'views/profile/detail.html',
         controller: 'UserDetailCtrl',
         resolve: {
           user: function(User, $stateParams) {
             return User.getOne($stateParams.id);
           },
-          ideas: function(Idea, $stateParams) {
-            var query = '?creator=' + $stateParams.id;
-            return Idea.getAll(query);
+          ideas: function(user, Idea) {
+            return Idea.getAll(user.id);
           }
         }
       })
