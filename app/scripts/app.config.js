@@ -13,7 +13,13 @@ angular.module('ideasApp')
 
       .state('ideas', {
         url: '/ideas',
-        templateUrl: 'views/ideas/main.html',
+        abstract: true,
+        template: '<div ui-view/>'
+      })
+
+      .state('ideas.list', {
+        url: '/list',
+        templateUrl: 'views/ideas/list.html',
         controller: 'IdeasCtrl',
         resolve: {
           ideas: function(Idea) {
@@ -22,8 +28,8 @@ angular.module('ideasApp')
         }
       })
 
-      .state('create', {
-        url: '/ideas/create',
+      .state('ideas.create', {
+        url: '/create',
         templateUrl: 'views/ideas/create.html',
         controller: 'CreateCtrl',
         resolve: {
@@ -33,8 +39,8 @@ angular.module('ideasApp')
         }
       })
 
-      .state('detail', {
-        url: '/ideas/:id',
+      .state('ideas.detail', {
+        url: '/:id',
         templateUrl: 'views/ideas/detail.html',
         controller: 'DetailCtrl',
         resolve: {
