@@ -2,12 +2,13 @@
 
 angular.module('ideasApp')
   .config(function($stateProvider, $urlRouterProvider, $authProvider) {
-    $urlRouterProvider.otherwise("/login");
+    $urlRouterProvider.otherwise('/login');
 
     $stateProvider
       .state('login', {
-        url: '/',
-        templateUrl: 'views/login.html'
+        url: '/login',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
       })
 
       .state('ideas', {
@@ -22,7 +23,7 @@ angular.module('ideasApp')
       })
 
       .state('create', {
-        url: '/create',
+        url: '/ideas/create',
         templateUrl: 'views/ideas/create.html',
         controller: 'CreateCtrl',
         resolve: {
@@ -45,33 +46,26 @@ angular.module('ideasApp')
 
       .state('tags', {
         url: '/tags',
-        templateUrl: 'views/tags/main.html',
-        controller: 'TagCtrl',
+        abstract: true,
+        template: '<div ui-view/>',
         resolve: {
           tags: function(Tag) {
-            var query = '?approved=true';
-            return Tag.getAll(query);
-          }
-        }
-      })
-
-      .state('tags.detail', {
-        url: '/detail/:id',
-        templateUrl: 'views/tags/detail.html',
-        controller: 'TagDetailCtrl',
-        resolve: {
-          tag: function(Tag, $stateParams) {
-            return Tag.getOne($stateParams.id);
+            return Tag.getAll('?approved=true');
           },
-          ideas: function(tag, Idea) {
-            var query = '?tags.text=' + tag.data.text;
-            return Idea.getAll(query);
+          proposed: function(Tag) {
+            return Tag.getAll('?approved=false');
           }
         }
       })
 
-      .state('tags.create', {
-        url: '/create',
+      .state('tags.list', {
+        url: '/list',
+        templateUrl: 'views/tags/list.html',
+        controller: 'TagCtrl'
+      })
+
+      .state('tags.new', {
+        url: '/new',
         templateUrl: 'views/tags/create.html',
         controller: 'NewTagCtrl'
       })
@@ -79,12 +73,12 @@ angular.module('ideasApp')
       .state('tags.review', {
         url: '/review',
         templateUrl: 'views/tags/review.html',
-        controller: 'ReviewTagCtrl',
-        resolve: {
-          proposed: function(Tag) {
-            return Tag.getAll('?approved=false');
-          }
-        }
+        controller: 'ReviewTagCtrl'
+      })
+
+      .state('tags.detail', {
+        url: '/:id',
+        templateUrl: 'views/tags/detail.html'
       })
 
       .state('profile', {
@@ -142,13 +136,13 @@ angular.module('ideasApp')
   // Redirect user to login page if they're not logged in
   .run(function($rootScope, $location, $state, $auth) {
     $rootScope.$on( '$stateChangeStart', function(e, toState) {
-        if (toState.name === 'login'){
-          return;
-        }
+      if (toState.name === 'login'){
+        return;
+      }
 
-        if(!$auth.isAuthenticated()) {
-          e.preventDefault();
-          $state.go('login');
-        }
+      if(!$auth.isAuthenticated()) {
+        e.preventDefault();
+        $state.go('login');
+      }
     });
 });
