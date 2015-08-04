@@ -8,7 +8,7 @@
  * Service in the ideasApp.
  */
 angular.module('ideasApp')
-  .service('User', function ($http, $auth, API_URL) {
+  .service('User', function ($http, $auth, $q, API_URL) {
     var payload = $auth.getPayload();
 
     function isAdmin() {
@@ -31,6 +31,18 @@ angular.module('ideasApp')
       return payload.sub;
     }
 
+    function getPicture(size) {
+      var d = $q.defer();
+      getOne(getId()).then(function (response) {
+        var picture = response.data.picture;
+        if (size) picture = picture.replace('?sz=50', '?sz=' + size);
+        d.resolve(picture);
+      }).catch(function (response) {
+        d.reject(response);
+      });
+      return d.promise;
+    }
+
     function submitVote(url) {
       return $http.post(API_URL + url);
     }
@@ -51,6 +63,7 @@ angular.module('ideasApp')
       getId: getId,
       submitVote: submitVote,
       removeVote: removeVote,
-      update: update
+      update: update,
+      getPicture: getPicture
     };
   });
