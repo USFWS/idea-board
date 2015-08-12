@@ -4,7 +4,7 @@
     <a ng-repeat="tag in idea.tags" ui-sref="tags.detail({ id: tag.id })" class="label label-primary">{{ tag.text }}</a>
   </p>
   <p>{{ idea.description }}</p>
-  <div ng-if="!idea.detailed">
+  <div ng-if="!detailed">
     <h2>
       <a ui-sref="ideas.detail({ id: idea.id, '#': 'attachments' })">
         <span class="glyphicon glyphicon-paperclip"></span>
@@ -13,19 +13,19 @@
       </a>
     </h2>
   </div>
-  <div ng-if="idea.detailed">
+  <div ng-if="detailed">
     <h2 id="attachments">
       <span class="glyphicon glyphicon-paperclip"></span>
       {{ idea.attachments.length || 0 }} Attachment<span ng-show="idea.attachments.length != 1">s</span>
     </h2>
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="file in idea.attachments">
-        <a href="{{file.url}}">{{ file.name }}</a>
+        <a href="{{ file.url }}">{{ file.name }}</a>
         <p>{{ file.description }}</p>
       </li>
     </ul>
   </div>
-  <div ng-if="!idea.detailed">
+  <div ng-if="!detailed">
     <h2>
       <a ui-sref="ideas.detail({ id: idea.id, '#': 'comments' })">
         <span class="glyphicon glyphicon-comment"></span>
@@ -33,24 +33,19 @@
       </a>
     </h2>
   </div>
-  <div ng-if="idea.detailed">
+  <div ng-if="detailed">
     <comments idea-id="{{idea.id}}" comments="idea.comments"></comments>
   </div>
 </div>
 
 <div class="col-xs-12 col-sm-4 idea-meta">
-  <button class="btn btn-circle btn-success btn-lg" ng-click="submitVote(idea.id);" ng-hide="hasVoted(idea)">
-    <span class="glyphicon glyphicon-plus"></span>
-  </button>
-  <button class="btn btn-circle btn-warning btn-lg" ng-click="removeVote(idea.id);" ng-show="hasVoted(idea)">
-    <span class="glyphicon glyphicon-remove"></span>
-  </button>
-  <p ng-hide="hasVoted(idea)">Vote for this idea</p>
-  <p ng-show="hasVoted(idea)">Remove your vote</p>
+  <toggle-vote user-id="{{ userId }}" idea="idea"></toggle-vote>
   <hr>
   <p>{{ idea.score.length }} vote<span ng-show="idea.score.length != 1">s</span> so far</p>
   <hr>
   <p>Status: {{ idea.status }}</p>
+  <hr>
+  <toggle-flag user-id="{{ userId }}" idea="idea"></toggle-flag>
 </div>
 
 <div class="idea-creator col-xs-12">
