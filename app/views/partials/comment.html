@@ -9,8 +9,8 @@
     <p ng-hide="view.isEditing">{{ comment.body }}</p>
     <div ng-show="view.isEditing" class="inline-form">
       <input type="text" class="form-control" ng-model="comment.body" style="max-width: 480px;">
-      <button class="btn btn-primary" ng-click="updateComment(comment)">Update</button>
-      <button class="btn btn-danger" ng-click="view.isEditing = false">Cancel</button>
+      <button class="btn btn-primary btn-xs" ng-click="updateComment(comment)">Update</button>
+      <button class="btn btn-danger btn-xs" ng-click="view.isEditing = false">Cancel</button>
     </div>
     <p class="comment-mods">
       <span class="glyphicon glyphicon-pencil"
