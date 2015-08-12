@@ -15,7 +15,7 @@ angular.module('ideasApp')
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider).then(function (response) {
         $auth.setToken(response.data.token);
-        $state.go('ideas');
+        $state.go('ideas.list');
         toastr.success('Welcome, ' + User.getUsername());
       }).catch(function (response) {
         toastr.error(response.data);
