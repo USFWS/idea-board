@@ -1,0 +1,5 @@
+<button ng-click="toggleVote()" class="btn btn-circle btn-lg" ng-class="{'btn-success': !voted, 'btn-warning': voted }">
+  <span class="glyphicon" ng-class="{'glyphicon-plus': !voted, 'glyphicon-remove': voted}"></span>
+</button>
+<p ng-hide="voted">Vote for this idea</p>
+<p ng-show="voted">Remove your vote</p>
