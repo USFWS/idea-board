@@ -151,6 +151,17 @@ angular.module('ideasApp')
       .state('help.documentation', {
         url: '/documentation',
         templateUrl: 'views/help/documentation.html'
+      })
+
+      .state('flags', {
+        url: '/flags/review',
+        templateUrl: 'views/partials/flags.html',
+        controller: 'FlagCtrl',
+        resolve: {
+          flags: function(Flag) {
+            return Flag.list();
+          }
+        }
       });
 
     $authProvider.loginUrl = 'http://localhost:1337/auth/login';
