@@ -17,7 +17,7 @@
     <h2 ng-hide="ideas.length === 0">{{ user.name.split(" ")[0] + "'s"}} Ideas</h2>
     <ul ng-repeat="idea in ideas">
       <li class="card idea row">
-        <idea idea="idea" id="{{user.id}}"></idea>
+        <idea idea="idea" user-id="{{ user.id }}"></idea>
       </li>
     </ul>
   </div>
