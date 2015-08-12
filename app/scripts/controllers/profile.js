@@ -11,6 +11,10 @@ angular.module('ideasApp')
   .controller('ProfileCtrl', function ($scope, User, me, toastr) {
     $scope.user = me.data;
 
+    $scope.isAdmin = function() {
+      return User.isAdmin();
+    };
+
     $scope.update = function() {
       var user = _.omit($scope.user, 'votes', 'ideas');
       User.update(user).then(function(response) {
