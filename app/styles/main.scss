@@ -105,6 +105,11 @@ body {
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2pt #66afe9;
+  }
 }
 .btn-circle.btn-lg {
   width: 50px;
@@ -113,6 +118,11 @@ body {
   font-size: 18px;
   line-height: 1.33;
   border-radius: 25px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 3pt 2pt #66afe9;
+  }
 }
 .btn-circle.btn-xl {
   width: 70px;
@@ -121,6 +131,11 @@ body {
   font-size: 24px;
   line-height: 1.33;
   border-radius: 35px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 3pt 2pt #66afe9;
+  }
 }
 
 .idea-detail {
