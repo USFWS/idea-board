@@ -15,6 +15,11 @@ angular.module('ideasApp')
     $scope.create = function() {
       Idea.create($scope.idea).then(function (response) {
         toastr.success('Created new Idea!', response.statusText);
+        if (response.data.badges) {
+          angular.forEach(response.data.badges, function (badge) {
+            toastr.info('New badge: ' + badge + '!', 'Congratulations');
+          });
+        }
         $scope.idea = {};
       }).catch(function (response) {
         toastr.error('Unable to create new Idea.', response.statusText);
