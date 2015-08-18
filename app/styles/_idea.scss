@@ -2,11 +2,16 @@
   display: block;
   margin: auto;
   max-width: 900px;
+  margin-bottom: 3em;
 }
 
 .idea-meta {
   text-align: center;
   margin-top: 0.5em;
+}
+
+.idea-detail {
+  border-right: 1px solid #dddddd;
 }
 
 .idea-creator {
