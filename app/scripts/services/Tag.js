@@ -8,7 +8,7 @@
  * Service in the ideasApp.
  */
 angular.module('ideasApp')
-  .service('Tag', function ($http, API_URL) {
+  .service('Tag', function ($http, API_URL, User) {
     var endpointURL = API_URL + 'tag';
 
     function getAll(query) {
@@ -33,11 +33,21 @@ angular.module('ideasApp')
       return $http.put(endpointURL + '/' + id, approved);
     }
 
+    function subscribe(id) {
+      return $http.post(endpointURL + '/' + id + '/subscribers/' + User.getId());
+    }
+
+    function unsubscribe(id) {
+      return $http.delete(endpointURL + '/' + id + '/subscribers/' + User.getId());
+    }
+
     return {
       getAll: getAll,
       getOne: getOne,
       create: create,
       destroy: destroy,
-      approve: approve
+      approve: approve,
+      subscribe: subscribe,
+      unsubscribe: unsubscribe
     };
   });
