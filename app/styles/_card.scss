@@ -7,20 +7,26 @@
 }
 
 .card {
-  @include clearfix;
-  @include transition(all 250ms);
-  @include shadow(1);
-  display: block;
-  background: #f4f4f4;
-  padding: 1rem;
-  padding-bottom: 0;
-  &:hover {
-    @include shadow(3);
-    @include transform(translateY(-5px));
+  @media (min-width: 500px) {
+    @include clearfix;
+    @include transition(all 250ms);
+    @include shadow(1);
+    display: block;
+    background: #f4f4f4;
+    padding: 1rem;
+    padding-bottom: 0;
+    &:hover {
+      @include shadow(3);
+      @include transform(translateY(-5px));
+    }
   }
 }
 
 .card-list {
   padding: 0;
-  margin: 1em;
+  margin: 0;
+
+  @media (min-width: 500px) {
+    margin: 1em;
+  }
 }

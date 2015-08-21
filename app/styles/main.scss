@@ -1,5 +1,6 @@
 // bower:scss
 @import "bourbon/app/assets/stylesheets/_bourbon.scss";
+@import "components-font-awesome/scss/font-awesome.scss";
 // endbower
 
 @import "card";
@@ -44,8 +45,14 @@ footer {
   }
 
   h1 {
-    font-size: 4em;
+    font-size: 2em;
   }
+  @media (min-width: 500px) {
+    h1 {
+      font-size: 4em;
+    }
+  }
+
 }
 
 .gi-1x { font-size: 1em; }
