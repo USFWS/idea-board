@@ -1,0 +1,5 @@
+<button ng-click="toggleSubscribe()" class="btn btn-circle btn-lg" ng-class="{'btn-success': !subscribed, 'btn-warning': subscribed }">
+  <span class="fa" ng-class="{'fa-rss': !subscribed, 'fa-minus': subscribed}"></span>
+</button>
+<p ng-hide="subscribed">Subscribe to this idea</p>
+<p ng-show="subscribed">Unsubscribe from this idea</p>
