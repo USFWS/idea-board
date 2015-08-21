@@ -44,4 +44,17 @@ angular.module('ideasApp')
     $scope.formatInput = function(idea) {
       if (idea) return idea.title;
     };
+
+    $scope.$on('tags-update', function() {
+      Tag.getAll('?approved=false').then(function (response) {
+        $scope.admin.tags = response.data;
+      });
+    });
+
+    $scope.$on('idea-update', function() {
+      Idea.getAll().then(function (response) {
+        $scope.ideas = response.data;
+      });
+    });
+
   });
