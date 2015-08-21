@@ -1,6 +1,10 @@
 <div class="typeahead-result">
-  <a ui-sref="ideas.detail({id: match.label.id})">
-    <p class="typeahead-title">{{ match.label.title }}</p>
-    <p class="typeahead-tags"><span ng-repeat="tag in match.label.tags" class="label label-primary">{{tag.text}}</span></p>
-  </a>
+  <p class="typeahead-title"><a ui-sref="ideas.detail({id: match.label.id })">{{ match.label.title }}</a></p>
+
+  <p class="typeahead-tags">
+    <span ng-repeat="tag in match.label.tags" class="label label-primary">
+      <a ui-sref="tags.detail({ id: tag.id })">{{ tag.text }}</a>
+    </span>
+  </p>
+
 </div>
