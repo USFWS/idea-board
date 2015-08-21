@@ -22,7 +22,8 @@ angular.module('ideasApp')
         }
         $scope.idea = {};
       }).catch(function (response) {
-        toastr.error('Unable to create new Idea.', response.statusText);
+        var message = (_.isString(response.data)) ? response.data : 'Unable to create new Idea.';
+        toastr.error(message, response.statusText);
       });
     };
 
