@@ -1,24 +1,26 @@
-<div class="row">
-  <div class="profile-user col-xs-12 col-md-8">
-    <h2>{{user.name}}</h2>
-    <p><strong>Office:</strong> {{user.office}}</p>
-    <p><strong>Occupation:</strong> {{user.occupation}}</p>
-    <p><strong>About:</strong> {{user.about}}</p>
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="profile-user col-xs-12 col-md-6">
+      <h2>{{user.name}}</h2>
+      <p><strong>Office:</strong> {{user.office}}</p>
+      <p><strong>Occupation:</strong> {{user.occupation}}</p>
+      <p><strong>About:</strong> {{user.about}}</p>
+    </div>
 
-  <div class="profile-badges col-xs-12 col-md-4">
-    <h2>Badges</h2>
-    <ul ng-repeat="badge in user.badges">
-      <li>{{badge}}</li>
-    </ul>
-  </div>
-  <div class="col-xs-12">
-    <h3 class="text-center" ng-if="ideas.length === 0">You haven't submitted any ideas yet.  <a ui-sref="ideas.create">Create one now?</a></h3></p>
-    <h2 ng-hide="ideas.length === 0">{{ user.name.split(" ")[0] + "'s"}} Ideas</h2>
-    <ul ng-repeat="idea in ideas">
-      <li class="card idea row">
-        <idea idea="idea" user-id="{{ user.id }}"></idea>
-      </li>
-    </ul>
+    <div class="profile-badges col-xs-12 col-md-6">
+      <h2>Badges</h2>
+      <ul ng-repeat="badge in user.badges">
+        <li>{{badge}}</li>
+      </ul>
+    </div>
+    <div class="col-xs-12">
+      <h3 class="text-center" ng-if="ideas.length === 0">You haven't submitted any ideas yet.  <a ui-sref="ideas.create">Create one now?</a></h3></p>
+      <h2 ng-hide="ideas.length === 0">{{ user.name.split(" ")[0] + "'s"}} Ideas</h2>
+      <ul ng-repeat="idea in ideas">
+        <li class="card idea row">
+          <idea idea="idea" user-id="{{ user.id }}"></idea>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
