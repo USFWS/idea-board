@@ -15,6 +15,10 @@ angular.module('ideasApp')
       return  payload.act === 'Admin';
     }
 
+    function isModerator() {
+      return payload.act === 'Moderator' || payload.act === 'Admin';
+    }
+
     function getAll() {
       return $http.get(API_URL + 'user');
     }
@@ -57,6 +61,7 @@ angular.module('ideasApp')
 
     return {
       isAdmin: isAdmin,
+      isModerator: isModerator,
       getAll: getAll,
       getOne: getOne,
       getUsername: getUsername,

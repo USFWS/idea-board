@@ -16,8 +16,9 @@ angular.module('ideasApp')
       return $http.get(url);
     }
 
-    function getOne(id) {
-      return $http.get(endpointURL + '/' + id);
+    function getOne(id, populate) {
+      var url = (populate) ? endpointURL + '/' + id + populate : endpointURL + '/' + id;
+      return $http.get(url);
     }
 
     function create(tag) {

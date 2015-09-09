@@ -21,8 +21,9 @@ angular.module('ideasApp')
     }
 
     function create(params) {
-      // Shouldn't generate ID on the client, or at least check it on the server
-      params.creator = User.getId();
+      params.tags = _.map(params.tags, function(tag) {
+        return tag.id;
+      });
       return $http.post(endpointURL, params);
     }
 
