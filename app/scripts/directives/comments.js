@@ -15,7 +15,7 @@ angular.module('ideasApp')
         comments: '=',
         ideaId: '@'
       },
-      controller: function($scope, Comment) {
+      controller: function($scope, $rootScope, Comment, toastr) {
         $scope.newComment = { idea: $scope.ideaId };
         $scope.view = {
           isEditing: false
@@ -31,9 +31,15 @@ angular.module('ideasApp')
         $scope.addComment = function() {
           if (!$scope.newComment.body) return;
           Comment.create($scope.newComment).then(function (response) {
-            $scope.comments.push(response.data);
-            addUserInfo();
+            $scope.comments.push(response.data.comment);
             $scope.newComment.body = '';
+            addUserInfo();
+            $rootScope.$broadcast('notifications-update');
+            if (response.data.badges) {
+              angular.forEach(response.data.badges, function (badge) {
+                toastr.info('New badge: ' + badge + '!', 'Congratulations');
+              });
+            }
           });
         };
 
@@ -48,6 +54,7 @@ angular.module('ideasApp')
             $scope.comments = _.reject($scope.comments, function(com){
               return com.id === comment.id;
             });
+            $rootScope.$broadcast('notifications-update');
           });
         };
 

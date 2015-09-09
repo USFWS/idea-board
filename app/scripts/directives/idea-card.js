@@ -14,7 +14,7 @@ angular.module('ideasApp')
       scope: {
         idea: '=',
         userId: '@',
-        detailed: '@'
+        detailed: '='
       },
       controller: function($scope, $state, Idea, User, toastr) {
 
