@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <h2>Notifications</h2>
+    <p ng-if="messages.length === 0">You do not have any notifications at this time.</p>
+    <ul class="list-group" ng-repeat="message in messages">
+      <li class="list-group-item">
+        <h3>{{ message.notification.title }}</h3>
+        <p>{{ message.notification.message }}</p>
+        <button class="btn btn-primary" ng-hide="message.read" ng-click="toggleRead(message)">Mark as Read</button>
+        <button class="btn btn-default" ng-show="message.read" ng-click="toggleRead(message)">Mark as Unread</button>
+        <button class="btn btn-danger" ng-click="deleteMessage(message)">Delete</button>
+      </li>
+    </ul>
+  </div>
+</div>
