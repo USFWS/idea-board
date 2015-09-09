@@ -1,6 +1,12 @@
 <div class="container">
-  <h1><span class="glyphicon glyphicon-tag"></span> {{ tag.text }}</h1>
-  <p ng-show="tag.description">Description: {{ tag.description }}</p>
+  <h1>Ideas by Tag:</h1>
+  <h2><span class="fa fa-tag"></span> {{ tag.text }}</h2>
+  <button ng-click="toggleSubscribe()" class="btn" ng-class="{'btn-success': !subscribed, 'btn-warning': subscribed }">
+    <span ng-show="subscribed">Unsubscribe</span>
+    <span ng-hide="subscribed">Subscribe</span>
+    <span class="fa fa-rss"></span>
+  </button>
+  <p ng-show="tag.description">{{ tag.description }}</p>
 
   <ul ng-repeat="idea in ideas" class="card-list">
     <li class="card row idea">

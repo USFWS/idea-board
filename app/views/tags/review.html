@@ -9,10 +9,10 @@
     <li class="list-group-item" ng-repeat="tag in needReview">
       <p><strong>{{ tag.text }}</strong>: {{ tag.description }}</p>
       <button class="btn btn-success" ng-click="approveTag(tag)">
-        <span class="glyphicon glyphicon-check"></span> Approve
+        <span class="fa fa-check"></span> Approve
       </button>
       <button class="btn btn-danger" ng-click="rejectTag(tag)">
-        <span class="glyphicon glyphicon-remove"></span> Reject
+        <span class="fa fa-remove"></span> Reject
       </button>
     </li>
   </ul>
