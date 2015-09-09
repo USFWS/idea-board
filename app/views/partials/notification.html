@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Create a Global Notification</h1>
+  <p>Submit the form below to send a notification to all users that currently have an account on the Employee Idea Board.</p>
+  <form name="globalMessage" ng-submit="submit()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" ng-model="notification.title" class="form-control" id="title" required>
+    </div>
+    <div class="form-group">
+    <label for="message">Message</label>
+      <textarea ng-model="notification.message"  class="form-control" id="message" required></textarea>
+    </div>
+    <input type="submit" class="btn btn-primary" ng-disabled="globalMessage.$invalid">
+  </form>
+</div>
