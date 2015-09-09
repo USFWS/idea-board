@@ -10,6 +10,6 @@
 angular.module('ideasApp')
   .controller('DetailCtrl', function ($scope, idea, user) {
     $scope.idea = idea.data;
-    $scope.idea.detailed = true;
+    $scope.detailed = true;
     $scope.user = user.data;
   });
