@@ -12,4 +12,6 @@ angular.module('ideasApp')
     $scope.ideas = ideas.data;
     $scope.detailed = false;
     $scope.userId = User.getId();
+
+    $scope.sortValue = '-updatedAt';
   });
