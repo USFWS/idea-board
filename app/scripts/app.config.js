@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('ideasApp')
-  .config(function($stateProvider, $urlRouterProvider, $authProvider) {
-    $urlRouterProvider.otherwise('/login');
+  .config(function($stateProvider, $urlRouterProvider, $authProvider, API_URL) {
+    $urlRouterProvider.otherwise('/ideas/list');
 
     $stateProvider
       .state('login', {
@@ -34,7 +34,21 @@ angular.module('ideasApp')
         controller: 'CreateCtrl',
         resolve: {
           tags: function(Tag) {
+            return Tag.getAll('?approved=true&populate=[]');
+          }
+        }
+      })
+
+      .state('ideas.edit', {
+        url: '/edit/:id',
+        templateUrl: 'views/ideas/edit.html',
+        controller: 'EditIdeaCtrl',
+        resolve: {
+          tags: function(Tag) {
             return Tag.getAll('?approved=true');
+          },
+          idea: function(Idea, $stateParams) {
+            return Idea.getOne($stateParams.id);
           }
         }
       })
@@ -56,21 +70,18 @@ angular.module('ideasApp')
       .state('tags', {
         url: '/tags',
         abstract: true,
-        template: '<div ui-view/>',
-        resolve: {
-          tags: function(Tag) {
-            return Tag.getAll('?approved=true');
-          },
-          proposed: function(Tag) {
-            return Tag.getAll('?approved=false');
-          }
-        }
+        template: '<div ui-view/>'
       })
 
       .state('tags.list', {
         url: '/list',
         templateUrl: 'views/tags/list.html',
-        controller: 'TagCtrl'
+        controller: 'TagCtrl',
+        resolve: {
+          tags: function(Tag) {
+            return Tag.getAll('?approved=true');
+          }
+        }
       })
 
       .state('tags.new', {
@@ -82,7 +93,12 @@ angular.module('ideasApp')
       .state('tags.review', {
         url: '/review',
         templateUrl: 'views/tags/review.html',
-        controller: 'ReviewTagCtrl'
+        controller: 'ReviewTagCtrl',
+        resolve: {
+          proposed: function(Tag) {
+            return Tag.getAll('?approved=false');
+          }
+        }
       })
 
       .state('tags.detail', {
@@ -94,7 +110,8 @@ angular.module('ideasApp')
             return Tag.getOne($stateParams.id);
           },
           ideas: function(tag, Idea) {
-            return Idea.getAll('?tags.text[]='+ tag.data.text);
+            var query = '?where={"tags":[' + tag.data.text + ']}';
+            return Idea.getAll(query);
           },
           user: function(User) {
             return User.getOne(User.getId());
@@ -115,6 +132,17 @@ angular.module('ideasApp')
         resolve: {
           me: function(User) {
             return User.getOne(User.getId());
+          }
+        }
+      })
+
+      .state('profile.notifications', {
+        url: '/notifications',
+        templateUrl: 'views/profile/notifications.html',
+        controller: 'NotificationListCtrl',
+        resolve: {
+          messages: function(Notify) {
+            return Notify.getAll();
           }
         }
       })
@@ -162,14 +190,25 @@ angular.module('ideasApp')
             return Flag.list();
           }
         }
+      })
+
+      .state('notification', {
+        url: '/notification',
+        templateUrl: 'views/partials/notification.html',
+        controller: 'NotificationCtrl'
       });
 
-    $authProvider.loginUrl = 'http://localhost:1337/auth/login';
-    $authProvider.registerUrl = 'http://localhost:1337/auth/register';
+    $authProvider.loginUrl = API_URL + 'auth/login';
+    $authProvider.registerUrl = API_URL + 'auth/register';
     $authProvider.google({
-      url: 'http://localhost:1337/auth/google',
+      url: API_URL + 'auth/google',
       redirectUri: 'http://localhost:9000/',
-      clientId: '84365983115-813872s0vvncdfdl40938hf13ahvm9h4.apps.googleusercontent.com'
+      clientId: '84365983115-813872s0vvncdfdl40938hf13ahvm9h4.apps.googleusercontent.com',
+      scope: [
+        'profile',
+        'email',
+        'https://www.googleapis.com/auth/gmail.send' // Send Gmail
+      ],
     });
   })
 
