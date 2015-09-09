@@ -11,9 +11,12 @@
     </div>
     <div class="form-group">
       <label for="tags">Tags</label>
-      <tags-input ng-model="idea.tags" max-tags="7" add-from-autocomplete-only="true">
-        <auto-complete source="filterTags($query)"></auto-complete>
-      </tags-input>
+      <ui-select multiple ng-model="idea.tags">
+        <ui-select-match placeholder="Add tags...">{{$item.text}}</ui-select-match>
+        <ui-select-choices repeat="tag in tags | filter:$select.search">
+          {{ tag.text }}
+        </ui-select-choices>
+      </ui-select>
     </div>
     <input type="submit" class="btn btn-primary" value="Update Idea" ng-disabled="ideaForm.$invalid">
   </form>

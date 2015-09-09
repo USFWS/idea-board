@@ -1,14 +1,27 @@
 <div class="container">
+
+
   <div class="logo">
     <img src="http://www.fws.gov/home/graphics/logo2005.gif" alt="U.S. Fish and Wildlife Service Official Logo">
     <h1>Employee Idea Board</h1>
     <span>Beta</span>
   </div>
   <div class="text-center">
-    <h2><a ui-sref="ideas.create">Create a New Idea</a></h2>
+    <h2><a ui-sref="ideas.create"><span class="fa fa-lightbulb-o"></span> Create a New Idea</a></h2>
+    <label for="sortValue">Sort:</label>
+    <select ng-model="sortValue" id="sortValue" name="sortValue">
+      <option value="-updatedAt">Most Recent</option>
+      <option value="updatedAt">Oldest</option>
+      <option value="votes">Most Upvotes</option>
+    </select>
+    <div class="input-group idea-filter">
+      <div class="input-group-addon"><span class="fa fa-search"></span></div>
+      <input type="search" ng-model="filterValue" class="form-control" placeholder="Filter ideas...">
+      <div class="input-group-addon" ng-click="filterValue = ''">Clear</div>
+    </div>
   </div>
 
-  <ul ng-repeat="idea in ideas" class="card-list">
+  <ul ng-repeat="idea in ideas | filter: filterValue | orderBy: sortValue" class="card-list">
     <li class="card row idea">
       <idea idea="idea" user-id="{{ userId }}" detailed="false"></idea>
     </li>
