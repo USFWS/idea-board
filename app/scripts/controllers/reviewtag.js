@@ -8,7 +8,7 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('ReviewTagCtrl', function ($scope, toastr, Tag, proposed) {
+  .controller('ReviewTagCtrl', function ($scope, $rootScope, toastr, Tag, proposed) {
     $scope.needReview = proposed.data;
 
     $scope.rejectTag = function(tag) {
@@ -24,7 +24,6 @@ angular.module('ideasApp')
       // Need to notify user that proposed the tag that it has been approved
       Tag.approve(tag.id).then(function (response) {
         toastr.success(response.statusText, 'Tag Approved!');
-        $scope.tags.push(tag);
         removeTag(tag);
       }).catch(function (response) {
         toastr.error(response.statusText, 'Could not delete proposed tag.');
@@ -35,5 +34,6 @@ angular.module('ideasApp')
       $scope.needReview = _.reject($scope.needReview, function(t){
         return t.id === tag.id;
       });
+      $rootScope.$broadcast('tags-update');
     }
   });
