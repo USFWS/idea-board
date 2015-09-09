@@ -8,7 +8,7 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('HeaderCtrl', function ($scope, $auth, $state, User, Tag, Idea, Flag) {
+  .controller('HeaderCtrl', function ($scope, $auth, $state, User, Tag, Idea, Flag, Notify) {
     $scope.admin = {};
 
     User.getPicture(40).then(function (picture) {
@@ -27,6 +27,10 @@ angular.module('ideasApp')
       $scope.admin.flags = response.data;
     });
 
+    Notify.getAll(false).then(function (response) {
+      $scope.notifications = response.data;
+    });
+
     $scope.logOut = function () {
       $auth.logout();
       $auth.removeToken();
@@ -39,6 +43,10 @@ angular.module('ideasApp')
 
     $scope.isAdmin = function() {
       return User.isAdmin();
+    };
+
+    $scope.isModerator = function() {
+      return User.isModerator();
     };
 
     $scope.formatInput = function(idea) {
@@ -54,6 +62,12 @@ angular.module('ideasApp')
     $scope.$on('idea-update', function() {
       Idea.getAll().then(function (response) {
         $scope.ideas = response.data;
+      });
+    });
+
+    $scope.$on('notifications-update', function() {
+      Notify.getAll(false).then(function (response) {
+        $scope.notifications = response.data;
       });
     });
 
