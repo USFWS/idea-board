@@ -8,7 +8,7 @@
  * Controller of the ideasApp
  */
 angular.module('ideasApp')
-  .controller('CreateCtrl', function ($scope, Idea, tags, toastr) {
+  .controller('CreateCtrl', function ($scope, $rootScope, Idea, tags, toastr) {
     $scope.idea = {};
     $scope.tags = tags.data;
 
@@ -21,15 +21,12 @@ angular.module('ideasApp')
           });
         }
         $scope.idea = {};
+        if (response.data.notifications.length ) {
+          $rootScope.$broadcast('notifications-update');
+        }
       }).catch(function (response) {
         var message = (_.isString(response.data)) ? response.data : 'Unable to create new Idea.';
         toastr.error(message, response.statusText);
-      });
-    };
-
-    $scope.filterTags = function(query) {
-      return _.filter($scope.tags, function(tag) {
-        return (tag.text.indexOf(query) > -1 || tag.description.indexOf(query) > -1);
       });
     };
   });
